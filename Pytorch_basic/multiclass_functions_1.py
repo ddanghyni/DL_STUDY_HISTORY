@@ -2,18 +2,19 @@ import torch
 from torch import nn, optim
 from torchvision import datasets, transforms
 import matplotlib.pyplot as plt
+from tqdm.notebook import tqdm
 
 DEVICE = "mps" if torch.backends.mps.is_available() else "cpu"
-
 
 def Train(model, train_DL, criterion, optimizer, EPOCH):
     loss_history = []
     NoT = len(train_DL.dataset)
 
-    model.train()  # train mode로 전환
     for ep in range(EPOCH):
+        model.train()  # train mode로 전환 (여기 넣어도 OK)
         rloss = 0  # running loss
-        for x_batch, y_batch in train_DL:
+
+        for x_batch, y_batch in tqdm(train_DL, desc=f"Epoch {ep+1}/{EPOCH}"):
             x_batch = x_batch.to(DEVICE)
             y_batch = y_batch.to(DEVICE)
             # inference
@@ -25,7 +26,7 @@ def Train(model, train_DL, criterion, optimizer, EPOCH):
             loss.backward()  # backpropagation
             optimizer.step()  # weight update
             # loss accumulation
-            loss_b = loss.item() * x_batch.shape[0]  # batch loss # BATCH_SIZE를 곱하면 마지막 18개도 32개를 곱하니까..
+            loss_b = loss.item() * x_batch.shape[0]  # batch loss
             rloss += loss_b  # running loss
         # print loss
         loss_e = rloss / NoT
@@ -34,6 +35,7 @@ def Train(model, train_DL, criterion, optimizer, EPOCH):
         print("-" * 20)
 
     return loss_history
+
 
 
 def Test(model, test_DL):
