@@ -2,6 +2,8 @@
 
 
 ## Pytorch Basic tutorial
-[Pytorch_basic repository]Pytorch_basic
+<hr>
 
-- 1. [Binary Classifcation](Pytorch_basic/Binary_classification.ipynb) 
+## All About CNN 
+<hr>
+~~사실 CNN의 0.1퍼만 다뤘음 ^^..~~
