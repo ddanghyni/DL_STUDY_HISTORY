@@ -1,4 +1,7 @@
-# Deep Learning Study REPO
+# Deep Learning Study repository
 
 
-[test](Pytorch_basic/Binary_classification.ipynb)  [ ] 체크 1  [ ] 체크 2  [ ] 체크 3
+## Pytorch Basic tutorial
+[Pytorch_basic repository]Pytorch_basic
+
+- 1. [Binary Classifcation](Pytorch_basic/Binary_classification.ipynb) 
